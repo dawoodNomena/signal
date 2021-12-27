@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@Controller
+@RestController
 @CrossOrigin
 public class RegionController{
     private final RegionRepository repository;
