@@ -31,7 +31,7 @@ public class RegionController{
         this.repository = repository;
     }
 
-    @GetMapping("/regions")
+    @GetMapping("/")
     @ResponseBody
     public String getRegion() throws Exception {
         //List<Region> val = repository.findAll();
