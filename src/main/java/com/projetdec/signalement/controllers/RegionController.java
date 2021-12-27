@@ -37,7 +37,7 @@ public class RegionController{
         List<Region> val = repository.findAll();
         Gson gson = new Gson();
         String rep = gson.toJson(val);
-        return(rep);
+        return"HELLO WORD";
     }
     
 
