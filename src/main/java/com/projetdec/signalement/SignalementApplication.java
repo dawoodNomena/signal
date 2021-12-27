@@ -8,7 +8,7 @@ import org.springframework.stereotype.*;
 @SpringBootApplication
 public class SignalementApplication {
 
-	@RequestMapping("/")
+	@RequestMapping(value="/index.html")
     @ResponseBody
     String home() {
       return "Hello World!";
