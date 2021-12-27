@@ -1,7 +1,7 @@
 package com.projetdec.signalement.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
@@ -37,7 +37,7 @@ public class RegionController{
         List<Region> val = repository.findAll();
         Gson gson = new Gson();
         String rep = gson.toJson(val);
-        return"HELLO WORD";
+        return "HELLO WORD";
     }
     
 
