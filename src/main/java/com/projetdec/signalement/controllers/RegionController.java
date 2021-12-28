@@ -31,13 +31,18 @@ public class RegionController{
         this.repository = repository;
     }
 
-    @GetMapping("/")
+    @GetMapping("/regions")
     @ResponseBody
     public String getRegion() throws Exception {
-        //List<Region> val = repository.findAll();
-        //Gson gson = new Gson();
-        //String rep = gson.toJson(val);
-        return "HELLO WORD";
+        List<Region> val = repository.findAll();
+        Gson gson = new Gson();
+        String rep = gson.toJson(val);
+        return rep;
+    }
+
+    @GetMapping("/")
+    public String helloworld() throws Exception {
+        return "BISOUS BE FA METY";
     }
     
 
