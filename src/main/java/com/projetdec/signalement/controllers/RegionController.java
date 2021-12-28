@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @CrossOrigin
 public class RegionController{
 
+
     private final RegionRepository repository;
 
     RegionController(RegionRepository repository){
@@ -36,14 +37,11 @@ public class RegionController{
     public String getRegion() throws Exception {
         List<Region> val = repository.findAll();
         Gson gson = new Gson();
-        String rep="";
-        if(val!=null){
-            rep = gson.toJson(val);
-        }
+        String rep = gson.toJson(val);
         return rep;
     }
 
-    @GetMapping("/")
+    @GetMapping("/print")
     public String helloworld() throws Exception {
         return "BISOUS BE FA METY";
     }
