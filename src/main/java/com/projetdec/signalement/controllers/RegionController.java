@@ -41,6 +41,11 @@ public class RegionController{
         return rep;
     }
 
+    @GetMapping("/text")
+    public String ben() throws Exception {
+        return "Text";
+    }
+
     @GetMapping("/")
     public String helloworld() throws Exception {
         return "BISOUS BE FA METY";
