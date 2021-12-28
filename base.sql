@@ -11,77 +11,73 @@ alter database signalement owner to postgres
 
 psql signalement postgres
 
-CREATE SEQUENCE admin_seq;
+CREATE SEQUENCE admin_seq start with 1 increment by 1;
 CREATE TABLE admin (
     id bigint NOT NULL DEFAULT nextval('admin_seq'),
     login varchar(100),
     nom varchar(100),
-    mdp varchar(255)
+    mdp varchar(255),
+    PRIMARY KEY(id)
 );
 ALTER SEQUENCE admin_seq OWNED BY admin.id;
-ALTER TABLE admin ADD PRIMARY KEY (id);
 
-CREATE SEQUENCE region_seq;
+CREATE SEQUENCE region_seq start with 1 increment by 1;
 CREATE TABLE region (
-    id int NOT NULL DEFAULT nextval('region_seq'),
+    id bigint NOT NULL DEFAULT nextval('region_seq'),
     nom varchar(100),
     coorX double precision,
-    coorY double precision
+    coorY double precision,
+    PRIMARY KEY(id)
 );
 ALTER SEQUENCE region_seq OWNED BY region.id;
-ALTER TABLE region ADD PRIMARY KEY (id);
 
-CREATE SEQUENCE responsable_seq;
+CREATE SEQUENCE responsable_seq start with 1 increment by 1;
 CREATE TABLE responsable (
-    id int NOT NULL DEFAULT nextval('responsable_seq'),
+    id bigint NOT NULL DEFAULT nextval('responsable_seq'),
     login varchar(100),
     nom varchar(100),
-    idRegion int NOT NULL,
-    mdp varchar(255)
+    idRegion bigint NOT NULL,
+    mdp varchar(255),
+    PRIMARY KEY(id),
+    FOREIGN KEY(idRegion) references region(id) ON DELETE CASCADE
 );
 ALTER SEQUENCE responsable_seq OWNED BY responsable.id;
-ALTER TABLE responsable ADD PRIMARY KEY (id);
-ALTER TABLE responsable
-ADD CONSTRAINT responsable_fk
-FOREIGN KEY (idRegion)
-REFERENCES region(id)
-ON DELETE CASCADE;
 
-CREATE SEQUENCE typeSignalement_seq;
+CREATE SEQUENCE typeSignalement_seq start with 1 increment by 1;
 CREATE TABLE typeSignalement (
-    id int NOT NULL DEFAULT nextval('typeSignalement_seq'),
+    id bigint NOT NULL DEFAULT nextval('typeSignalement_seq'),
      titre varchar(100),
-    description varchar(255)
+    description varchar(255),
+    PRIMARY KEY(id)
 );
 ALTER SEQUENCE typeSignalement_seq OWNED BY typeSignalement.id;
-ALTER TABLE typeSignalement ADD PRIMARY KEY (id);
 
-CREATE SEQUENCE user_seq;
-CREATE TABLE user (
-    id int NOT NULL ,
+CREATE SEQUENCE utilisateur_seq start with 1 increment by 1;
+CREATE TABLE utilisateur (
+    id bigint NOT NULL ,
     login varchar(100),
     nom varchar(100),
-    mdp varchar(255)
+    mdp varchar(255),
+    PRIMARY KEY(id)
 );
-ALTER SEQUENCE user_seq OWNED BY user.id;
-ALTER TABLE user ADD PRIMARY KEY (id);
+ALTER SEQUENCE utilisateur_seq OWNED BY utilisateur.id;
 
-CREATE SEQUENCE signalement_seq;
+CREATE SEQUENCE signalement_seq start with 1 increment by 1;
 CREATE TABLE signalement (
-    id int NOT NULL DEFAULT nextval('signalement_seq'),
-    idRegion int NOt NULL,
-    idUser int NOT NULL,
-    date datetime,
-    idType int,
+    id bigint NOT NULL DEFAULT nextval('signalement_seq'),
+    idRegion bigint NOt NULL,
+    idUtilisateur bigint NOT NULL,
+    date timestamp,
+    idType bigint,
     status varchar(100),
     coorX double precision,
-    coorY double precision
+    coorY double precision,
+    PRIMARY KEY(id),
+    FOREIGN KEY(idRegion) references region(id) ON DELETE CASCADE,
+    FOREIGN KEY(idUtilisateur) references utilisateur(id) ON DELETE CASCADE,
+    FOREIGN KEY(idType) references typeSignalement(id) ON DELETE CASCADE
 );
 ALTER SEQUENCE signalement_seq OWNED BY signalement.id;
-ALTER TABLE signalement ADD PRIMARY KEY (id);
-ALTER TABLE signalement ADD CONSTRAINT region_fk FOREIGN KEY (idRegion) REFERENCES region(id) ON DELETE CASCADE;
-ALTER TABLE signalement ADD CONSTRAINT user_fk FOREIGN KEY (idUser) REFERENCES user(id) ON DELETE CASCADE;
-ALTER TABLE signalement ADD CONSTRAINT type_fk FOREIGN KEY (idType) REFERENCES typeSignalement(id) ON DELETE CASCADE;
 
 insert into region(nom, coorX, coorY) values('Analamanga', 10.22222, 28.210215648);
 insert into region(nom, coorX, coorY) values('Sofia', 12.2222, 24.210215648);
