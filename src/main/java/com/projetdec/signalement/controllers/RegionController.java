@@ -36,7 +36,10 @@ public class RegionController{
     public String getRegion() throws Exception {
         List<Region> val = repository.findAll();
         Gson gson = new Gson();
-        String rep = gson.toJson(val);
+        String rep="";
+        if(val!=null){
+            rep = gson.toJson(val);
+        }
         return rep;
     }
 
