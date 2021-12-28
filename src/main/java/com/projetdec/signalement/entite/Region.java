@@ -7,9 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.*;
 
 @Entity
+@Table(name="region")
 public class Region{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+    @GeneratedValue Long id;
     String nom;
     double coorX;
     double coorY;
