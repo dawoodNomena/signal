@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Entity
 public class Region{
-    @Id @GeneratedValue Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     String nom;
     double coorX;
     double coorY;
