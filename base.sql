@@ -13,7 +13,7 @@ psql signalement postgres
 
 CREATE SEQUENCE admin_seq;
 CREATE TABLE admin (
-    id int NOT NULL DEFAULT nextval('admin_seq'),
+    id bigint NOT NULL DEFAULT nextval('admin_seq'),
     login varchar(100),
     nom varchar(100),
     mdp varchar(255)
