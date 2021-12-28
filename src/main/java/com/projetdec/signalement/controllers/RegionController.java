@@ -41,7 +41,7 @@ public class RegionController{
         return rep;
     }
 
-    @GetMapping("/print")
+    @GetMapping("/")
     public String helloworld() throws Exception {
         return "BISOUS BE FA METY";
     }
