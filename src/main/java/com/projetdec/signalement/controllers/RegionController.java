@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @CrossOrigin
 public class RegionController{
+    
+    @Autowired
     private final RegionRepository repository;
 
     RegionController(RegionRepository repository){
