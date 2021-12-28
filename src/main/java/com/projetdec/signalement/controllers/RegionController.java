@@ -32,7 +32,6 @@ public class RegionController{
     }
 
     @GetMapping("/regions")
-    @ResponseBody
     public String getRegion() throws Exception {
         List<Region> val = repository.findAll();
         Gson gson = new Gson();
